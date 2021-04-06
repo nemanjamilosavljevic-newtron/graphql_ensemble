@@ -1,0 +1,14 @@
+{
+  "name": "graphql_ensemble",
+  "version": "1.0.0",
+  "description": "Testing graphq-mesh and gqless libraries and their approaches",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {}
+}

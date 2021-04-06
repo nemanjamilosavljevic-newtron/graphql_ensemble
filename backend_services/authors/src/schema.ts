@@ -1,0 +1,55 @@
+const { loadSchemaSync } = require('@graphql-tools/load');
+const { join } = require('path');
+const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader');
+const { addResolversToSchema } = require('@graphql-tools/schema');
+const faker = require('faker');
+
+const schemaDef = loadSchemaSync(join(__dirname, '../authors.graphql'), {
+  loaders: [new GraphQLFileLoader()],
+});
+
+let authors = [
+  { id: 1, name: 'Robert Jordan', booksIds: [1, 2] },
+  { id: 2, name: 'Stephen King', booksIds: [10, 11, 12] },
+];
+
+const resolvers = {
+  Query: {
+    authors: () => authors,
+    author: (_, { id }) => {
+      if (!id) throw new Error(`Missing mandatory property id: ${id}`);
+
+      const foundAuthor = authors.find((author) => Number(author.id) === Number(id));
+      console.log(id, authors, 'result:', foundAuthor);
+      return foundAuthor;
+    },
+  },
+
+  Mutation: {
+    createAuthor: (_, { authorCreateInput }) => {
+      if (!authorCreateInput) throw new Error(`Missing authorCreateInput: ${authorCreateInput}`);
+
+      const newAuthor = { id: faker.datatype.uuid, name: authorCreateInput.name, booksIds: authorCreateInput.booksIds };
+      authors.push(newAuthor);
+      return newAuthor;
+    },
+
+    updateAuthor: (_, { id, authorUpdateInput }) => {
+      if (!id) throw new Error(`Missing mandatory property id: ${id}`);
+
+      authors = authors.map((author) => {
+        if (Number(author.id) === Number(id)) {
+          return { ...author, ...authorUpdateInput };
+        }
+        return author;
+      });
+
+      return authors.find((author) => Number(author.id) === Number(id));
+    },
+  },
+};
+
+module.exports = addResolversToSchema({
+  schema: schemaDef,
+  resolvers,
+});

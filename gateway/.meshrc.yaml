@@ -1,0 +1,78 @@
+sources:
+  - name: Authors
+    handler:
+      graphql:
+        endpoint: http://localhost:4100/graphql
+  - name: Books
+    handler:
+      graphql:
+        endpoint: http://localhost:4200/graphql
+
+additionalTypeDefs: |
+  extend type Book {
+    author: Author
+  }
+  extend type Author {
+    books: [Book]
+  }
+
+additionalResolvers:
+  - type: Book
+    field: author
+    requiredSelectionSet: '{ authorId }'
+    targetSource: Authors
+    targetMethod: author
+    returnData: data.author
+    args:
+      id: '{root.authorId}'
+
+# - ./src/authors-resolver.js
+
+transforms:
+  - mock:
+      preserveResolvers: true
+      mocks:
+        - apply: Author.name
+          faker: '{{name.firstName}}'
+
+#          custom: './src/mocks/author.json'
+
+serve:
+  cors: { origin: http://localhost:3000 }
+  exampleQuery: |
+    query Books {
+      books {
+        id
+        title
+        author {
+          id
+          name
+        }
+      }
+    }
+    query Book {
+      book(id: 1) {
+        id
+        title
+      }
+    }
+    query Authors {
+      authors{
+        id
+        name
+        books{
+         id
+         title
+        }
+      }
+    }
+    query Author{
+      author(id:1){
+        id
+        name
+        books{
+          id
+          title
+        }
+      }
+    }
