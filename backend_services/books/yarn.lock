@@ -1575,10 +1575,10 @@ graphql-helix@^1.2.3:
   resolved "https://registry.yarnpkg.com/graphql-helix/-/graphql-helix-1.2.3.tgz#eaad4db338e2cdf6f5799478d1b05125ff19cd04"
   integrity sha512-psBs23Md/Nt0qsNOv5K+MqqsJ09lTyYtoujGAlFuE1+twUBQiKyanOYk3cqs9BtnJ7JsS+JlsS2/0ceE+20RCA==
 
-graphql-modules@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/graphql-modules/-/graphql-modules-1.4.1.tgz#1c986373d80f97e91343c544d18bbfd39d4fc963"
-  integrity sha512-3emxD0VMqU3b5kj97joOhDLcrC4xSRMv2uFqhTjfKQfcqu/+NzQCtpKsp1bpJORwtASPTyPpggVfwSqhugkrmg==
+graphql-modules@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/graphql-modules/-/graphql-modules-1.4.2.tgz#18b1102a1e9b305bd330098330d3408663ef66d2"
+  integrity sha512-sw0jPou+DGv2BscbkTcd2VjfXNq45ALIFVEfgjKVhpMPraUDgddqG3RxQdGC16SbNJgpGovLKQd96zft6pVuaA==
   dependencies:
     "@graphql-tools/schema" "^7.0.0"
     "@graphql-tools/wrap" "^7.0.0"
@@ -2710,6 +2710,11 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+reflect-metadata@0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 registry-auth-token@^4.0.0:
   version "4.2.1"

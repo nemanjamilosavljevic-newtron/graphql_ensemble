@@ -1,6 +1,8 @@
+import 'reflect-metadata';
+
 const express = require('express');
 const { getGraphQLParameters, processRequest, renderGraphiQL, shouldRenderGraphiQL } = require('graphql-helix');
-const schema = require('./schema');
+const { application } = require('./test');
 
 const app = express();
 
@@ -24,7 +26,8 @@ app.use('/graphql', async (req, res) => {
       query,
       variables,
       request,
-      schema,
+      schema: application.schema,
+      execute: application.createExecution(),
     });
 
     if (result.type === 'RESPONSE') {

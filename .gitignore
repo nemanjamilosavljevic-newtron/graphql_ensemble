@@ -1,7 +1,12 @@
 node_modules
 playground
 
-/.idea/**
+.idea/**
 !.idea/watcherTasks.xml
 !.idea/prettier.xml
 !.idea/runConfigurations/**
+
+/**/.idea/**
+/**/!.idea/watcherTasks.xml
+/**/!.idea/prettier.xml
+/**/!.idea/runConfigurations/**

@@ -4,7 +4,7 @@ const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader');
 const { addResolversToSchema } = require('@graphql-tools/schema');
 const faker = require('faker');
 
-const schemaDef = loadSchemaSync(join(__dirname, '../authors.graphql'), {
+const schemaDef = loadSchemaSync(join(__dirname, '../schema.graphql'), {
   loaders: [new GraphQLFileLoader()],
 });
 
