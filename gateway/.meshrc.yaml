@@ -16,6 +16,9 @@ additionalTypeDefs: |
     books: [Book]
   }
 
+require:
+  - ts-node/register/transpile-only
+
 additionalResolvers:
   - type: Book
     field: author
