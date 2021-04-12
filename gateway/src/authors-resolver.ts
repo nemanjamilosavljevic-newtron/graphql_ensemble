@@ -1,26 +1,6 @@
-type AuthorsType = { api: { author: Function } };
+import { Resolvers } from './generated/mesh';
 
-type Type = {
-  Book: {
-    author: {
-      selectionSet: string;
-      resolve: (
-        root: { authorId: string },
-        args: any,
-        { Authors }: { Authors: AuthorsType },
-        info: any
-      ) => Promise<any>;
-    };
-  };
-  Author: {
-    books: {
-      selectionSet: string;
-      resolve: (root: { booksIds: string[] }, args: any, { Books }: { Books: any }, info: any) => Promise<string[]>;
-    };
-  };
-};
-
-export const resolvers: Type = {
+export const resolvers: Resolvers = {
   Book: {
     author: {
       selectionSet: `{ authorId }`,
