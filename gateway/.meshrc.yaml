@@ -25,15 +25,20 @@ additionalResolvers:
     requiredSelectionSet: '{ authorId }'
     targetSource: Authors
     targetMethod: author
-    returnData: data.author
     args:
       id: '{root.authorId}'
+  - type: Author
+    field: books
+    requiredSelectionSet: '{ booksIds }'
+    targetSource: Books
+    targetMethod: books
+    args:
+      id: '{root.booksIds}'
 
 # - ./src/authors-resolver.js
 
 transforms:
   - mock:
-      preserveResolvers: true
       mocks:
         - apply: Author.name
           faker: '{{name.firstName}}'
