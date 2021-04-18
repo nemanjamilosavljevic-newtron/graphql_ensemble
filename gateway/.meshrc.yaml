@@ -37,6 +37,7 @@ additionalResolvers:
 
 transforms:
   - mock:
+      preserveResolvers: true
       mocks:
         - apply: Author.name
           faker: '{{name.firstName}}'
