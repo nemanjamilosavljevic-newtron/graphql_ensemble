@@ -20,7 +20,5 @@
     "allowJs": false,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true
-  },
-  "include": ["node_modules/react-scripts", "src"],
-  "exclude": ["node_modules", "tmp", "dist"]
+  }
 }
