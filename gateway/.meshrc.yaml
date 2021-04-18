@@ -35,8 +35,6 @@ additionalResolvers:
     args:
       id: '{root.booksIds}'
 
-# - ./src/authors-resolver.js
-
 transforms:
   - mock:
       mocks:
@@ -81,6 +79,16 @@ serve:
         books{
           id
           title
+        }
+      }
+    }
+    mutation CreateAuthor($authorCreateInput: AuthorCreate!) {
+      createAuthor(authorCreateInput: $authorCreateInput){
+        id
+        name
+        booksIds
+        books {
+          id
         }
       }
     }
