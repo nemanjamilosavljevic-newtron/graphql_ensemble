@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e ts,graphql -w .meshrc.yaml --exec \"tsc && mesh serve\"",
+    "start": "nodemon -e ts,graphql -w .meshrc.yaml --exec mesh serve",
     "generate-schema": "mesh dump-schema --output ./schema.graphql",
     "generate-types": "graphql-mesh typescript --output ./src/generated/mesh.ts"
   },
@@ -20,8 +20,6 @@
   },
   "devDependencies": {
     "@types/node": "14.14.37",
-    "nodemon": "2.0.7",
-    "ts-node": "9.1.1",
-    "typescript": "4.2.3"
+    "nodemon": "2.0.7"
   }
 }
