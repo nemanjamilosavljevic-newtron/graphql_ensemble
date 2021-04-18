@@ -2,11 +2,11 @@ sources:
   - name: Authors
     handler:
       graphql:
-        endpoint: http://localhost:4100/graphql
+        endpoint: http://localhost:4100
   - name: Books
     handler:
       graphql:
-        endpoint: http://localhost:4200/graphql
+        endpoint: http://localhost:4200
 
 additionalTypeDefs: |
   extend type Book {

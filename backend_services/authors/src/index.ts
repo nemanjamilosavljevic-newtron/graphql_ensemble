@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/graphql', async (req, res) => {
+app.use('/', async (req, res) => {
   const request = {
     body: req.body,
     headers: req.headers,
@@ -38,4 +38,4 @@ app.use('/graphql', async (req, res) => {
   }
 });
 
-app.listen(4100, () => console.log('Now browse to http://localhost:4100/graphql'));
+app.listen(4100, () => console.log('Now browse to http://localhost:4100'));
