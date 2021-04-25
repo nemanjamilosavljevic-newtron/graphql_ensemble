@@ -34,12 +34,19 @@ additionalResolvers:
 
 transforms:
   - mock:
+      if: true
       preserveResolvers: true
       mocks:
+        - apply: Author.id
+          custom: './src/mocks/author#id'
         - apply: Author.name
-          faker: '{{name.firstName}}'
+          custom: './src/mocks/author#name'
+        - apply: Query.authors
+          length: 5
+        - apply: Mutation.updateAuthor
+          custom: './src/mocks/mutations#updateAuthor'
 
-#          custom: './src/mocks/author.json'
+          # faker: '{{name.firstName}}'
 
 serve:
   cors: { origin: http://localhost:3000 }
@@ -88,5 +95,11 @@ serve:
         books {
           id
         }
+      }
+    }
+    mutation UpdateAuthor($id: ID!, $authorUpdateInput: AuthorUpdate!) {
+      updateAuthor(id: $id, authorUpdateInput: $authorUpdateInput){
+        id
+        name
       }
     }

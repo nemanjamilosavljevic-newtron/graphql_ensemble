@@ -20,7 +20,9 @@ const resolvers = {
       if (!id) throw new Error(`Missing mandatory property id: ${id}`);
 
       const foundAuthor = authors.find((author) => Number(author.id) === Number(id));
-      console.log(id, authors, 'result:', foundAuthor);
+      console.log('Author ID: ', id);
+      console.log('Authors: ', authors);
+      console.log('Found author: ', foundAuthor);
       return foundAuthor;
     },
   },
@@ -30,12 +32,15 @@ const resolvers = {
       if (!authorCreateInput) throw new Error(`Missing authorCreateInput: ${authorCreateInput}`);
 
       const newAuthor = { id: faker.datatype.uuid, name: authorCreateInput.name, booksIds: authorCreateInput.booksIds };
+      console.log('Author create input: ', authorCreateInput);
+      console.log('New author: ', newAuthor);
       authors.push(newAuthor);
       return newAuthor;
     },
 
     updateAuthor: (_, { id, authorUpdateInput }) => {
       if (!id) throw new Error(`Missing mandatory property id: ${id}`);
+      console.log('updateAuthor: ', id, authorUpdateInput);
 
       authors = authors.map((author) => {
         if (Number(author.id) === Number(id)) {

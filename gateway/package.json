@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e ts,graphql -w .meshrc.yaml --exec mesh serve",
+    "start": "nodemon -e js,graphql -w .meshrc.yaml --exec mesh serve",
     "generate-schema": "mesh dump-schema --output ./schema.graphql",
     "generate-types": "graphql-mesh typescript --output ./src/generated/mesh.ts"
   },
@@ -15,7 +15,7 @@
     "@graphql-mesh/graphql": "0.16.0",
     "@graphql-mesh/openapi": "0.15.0",
     "@graphql-mesh/runtime": "0.13.3",
-    "@graphql-mesh/transform-mock": "0.8.5",
+    "@graphql-mesh/transform-mock": "0.9.0-alpha-54868f872.0",
     "graphql": "15.5.0"
   },
   "devDependencies": {

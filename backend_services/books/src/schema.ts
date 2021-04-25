@@ -19,9 +19,9 @@ const resolvers = {
   Query: {
     books: () => books,
     book: (_, { id }) => {
+      console.log('Book Id: ', id);
       console.log(
-        'book',
-        id,
+        'Found book: ',
         books.find((book) => book.id === Number(id))
       );
 
