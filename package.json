@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "Testing graphq-mesh and gqless libraries and their approaches",
   "scripts": {
-    "startAuthorsService": "cd backend_services/authors && yarn install --frozen-lockfile && yarn start",
-    "startBooksService": "cd backend_services/books && yarn install --frozen-lockfile && yarn start",
-    "startGateway": "cd gateway && yarn install --frozen-lockfile && yarn start",
+    "installAuthorDeps": "cd backend_services/authors && yarn install --frozen-lockfile",
+    "installBooksDeps": "cd backend_services/books && yarn install --frozen-lockfile",
+    "installGatewayDeps": "cd gateway && yarn install --frozen-lockfile",
+    "postinstall": "npm-run-all -p installAuthorDeps installBooksDeps installGatewayDeps",
+    "startAuthorsService": "cd backend_services/authors && yarn start",
+    "startBooksService": "cd backend_services/books && yarn start",
+    "startGateway": "cd gateway && yarn start",
     "start": "npm-run-all -p startAuthorsService startBooksService startGateway"
   },
   "author": "",
