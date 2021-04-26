@@ -10,7 +10,7 @@
 
 ### Major:
 
-- Mocking doesn't work: https://github.com/Urigo/graphql-mesh/issues/1909
+- The "custom" property not documented well enough: https://github.com/Urigo/graphql-mesh/issues/1909
 
 ### Minor:
 
