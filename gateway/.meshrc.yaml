@@ -37,6 +37,10 @@ transforms:
       if: true
       preserveResolvers: true
       mocks:
+        - apply: Query.author
+          store:
+            type: Author
+            key: { args.id }
         - apply: Author.id
           custom: './src/mocks/author#id'
         - apply: Author.name
@@ -45,8 +49,6 @@ transforms:
           length: 5
         - apply: Mutation.updateAuthor
           custom: './src/mocks/mutations#updateAuthor'
-
-          # faker: '{{name.firstName}}'
 
 serve:
   cors: { origin: http://localhost:3000 }

@@ -23,5 +23,4 @@ const id = generateIds();
 module.exports = {
   id: () => id.next().value,
   name: () => name.next().value,
-  books: () => [{ id: 1, authorId: 1, title: 'The Conan Chronicles' }],
 };

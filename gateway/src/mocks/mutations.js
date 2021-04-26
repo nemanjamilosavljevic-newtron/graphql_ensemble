@@ -9,6 +9,7 @@ module.exports = {
     };
     mockStore.set(authorRef, 'name', authorUpdateInput.name);
 
+    console.log(mockStore.get('Query', 'ROOT', 'author', id, 'name'));
     // Get
     return mockStore.get('Query', 'ROOT', 'author', id);
   },
