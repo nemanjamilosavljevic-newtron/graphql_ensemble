@@ -1,12 +1,16 @@
+type Query {
+  authors: [Author!]!
+  author(id: ID!): Author!
+}
+
 type Author {
   id: ID!
   name: String!
-  booksIds: [ID!]!
 }
 
-type Query {
-  authors: [Author!]!
-  author(id: ID!): Author
+type Mutation {
+  createAuthor(authorCreateInput: AuthorCreate!): Author!
+  updateAuthor(id: ID!, authorUpdateInput: AuthorUpdate!): Author!
 }
 
 input AuthorCreate {
@@ -16,9 +20,4 @@ input AuthorCreate {
 input AuthorUpdate {
   name: String
   booksIds: [ID!]
-}
-
-type Mutation {
-  createAuthor(authorCreateInput: AuthorCreate!): Author!
-  updateAuthor(id: ID!, authorUpdateInput: AuthorUpdate!): Author!
 }

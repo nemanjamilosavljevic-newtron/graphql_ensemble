@@ -8,6 +8,7 @@ const schemaDef = loadSchemaSync(join(__dirname, '../authors.graphql'), {
   loaders: [new GraphQLFileLoader()],
 });
 
+// Data store //
 let authors = [
   { id: 1, name: 'Robert Jordan', booksIds: [1, 2] },
   { id: 2, name: 'Stephen King', booksIds: [10, 11, 12] },
@@ -15,15 +16,17 @@ let authors = [
 
 const resolvers = {
   Query: {
-    authors: () => authors,
+    authors: () => {
+      return authors.map(({booksIds, ...rest}) => rest)
+    },
     author: (_, { id }) => {
       if (!id) throw new Error(`Missing mandatory property id: ${id}`);
 
-      const foundAuthor = authors.find((author) => Number(author.id) === Number(id));
+      const {booksIds, ...rest} = authors.find((author) => Number(author.id) === Number(id));
       console.log('Author ID: ', id);
       console.log('Authors: ', authors);
-      console.log('Found author: ', foundAuthor);
-      return foundAuthor;
+      console.log('Found author: ', rest);
+      return rest;
     },
   },
 
