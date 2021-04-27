@@ -40,7 +40,7 @@ transforms:
         - apply: Query.author
           store:
             type: Author
-            key: { args.id }
+            key: '{ args.id }'
         - apply: Author.id
           custom: './src/mocks/author#id'
         - apply: Author.name
