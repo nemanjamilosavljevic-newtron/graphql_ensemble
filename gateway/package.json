@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -w .meshrc.yaml --exec mesh serve",
-    "generate-schema": "mesh dump-schema --output ./schema.graphql",
-    "generate-types": "graphql-mesh typescript --output ./src/generated/mesh.ts"
+    "start": "nodemon -w **/* --exec mesh serve",
+    "generate-schema": "mesh dump-schema --output ./schema.graphql"
   },
   "author": "",
   "license": "ISC",

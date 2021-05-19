@@ -8,47 +8,47 @@ sources:
       graphql:
         endpoint: http://localhost:4200
 
-# additionalTypeDefs: |
-#   extend type Book {
-#     author: Author
-#   }
-#   extend type Author {
-#     books: [Book]
-#   }
+#additionalTypeDefs: |
+#  extend type Book {
+#    author: Author
+#  }
+#  extend type Author {
+#    books: [Book]
+#  }
+#
+#additionalResolvers:
+#  - type: Book
+#    field: author
+#    requiredSelectionSet: "{ authorId }"
+#    targetSource: Authors
+#    targetMethod: author
+#    args:
+#      id: "{root.authorId}"
+#  - type: Author
+#    field: books
+#    requiredSelectionSet: "{ booksIds }"
+#    targetSource: Books
+#    targetMethod: books
+#    args:
+#      id: "{root.booksIds}"
 
-# additionalResolvers:
-#   - type: Book
-#     field: author
-#     requiredSelectionSet: '{ authorId }'
-#     targetSource: Authors
-#     targetMethod: author
-#     args:
-#       id: '{root.authorId}'
-#   - type: Author
-#     field: books
-#     requiredSelectionSet: '{ booksIds }'
-#     targetSource: Books
-#     targetMethod: books
-#     args:
-#       id: '{root.booksIds}'
-
-transforms:
-  - mock:
-      if: false
-      preserveResolvers: true
-      mocks:
-        - apply: Query.author
-          store:
-            type: Author
-            key: "{ args.id }"
-        - apply: Author.id
-          custom: "./src/mocks/author#id"
-        - apply: Author.name
-          custom: "./src/mocks/author#name"
-        - apply: Query.authors
-          length: 5
-        - apply: Mutation.updateAuthor
-          custom: "./src/mocks/mutations#updateAuthor"
+#transforms:
+#  - mock:
+#      if: false
+#      preserveResolvers: true
+#      mocks:
+#        - apply: Query.author
+#          store:
+#            type: Author
+#            key: "{ args.id }"
+#        - apply: Author.id
+#          custom: "./src/mocks/author#id"
+#        - apply: Author.name
+#          custom: "./src/mocks/author#name"
+#        - apply: Query.authors
+#          length: 5
+#        - apply: Mutation.updateAuthor
+#          custom: "./src/mocks/mutations#updateAuthor"
 
 serve:
   cors: { origin: http://localhost:3000 }
@@ -78,7 +78,6 @@ serve:
     query Author{
       author(id:1){
         id
-        name
         books{
           id
           title

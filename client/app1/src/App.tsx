@@ -1,8 +1,9 @@
-import React from 'react';
-import { useQuery } from './gqless';
+import React from "react";
+import { useQuery } from "./gqless";
 
 function App() {
   const { $state, books, authors } = useQuery();
+
   return (
     <section>
       <article>
@@ -13,7 +14,7 @@ function App() {
           ) : (
             books.map((book) => (
               <li key={book.id || 0}>
-                <b style={{ display: 'inline-block' }}>{book.title}</b> <span>written by</span> {book.author.name}
+                <b style={{ display: "inline-block" }}>{book.title}</b>
               </li>
             ))
           )}
@@ -28,7 +29,9 @@ function App() {
           ) : (
             authors.map((author) => (
               <li key={author.id || 0}>
-                <b style={{ width: 180, display: 'inline-block' }}>{author.name}</b>{' '}
+                <b style={{ width: 180, display: "inline-block" }}>
+                  {author.name}
+                </b>
                 <ul>
                   {author.books.map((book) => (
                     <li key={book.id || 0}>{book.title}</li>
