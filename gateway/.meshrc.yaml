@@ -69,15 +69,12 @@ serve:
       authors{
         id
         name
-        books{
-         id
-         title
-        }
       }
     }
     query Author{
       author(id:1){
         id
+        name
         books{
           id
           title
