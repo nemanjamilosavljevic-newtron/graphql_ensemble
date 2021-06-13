@@ -14,11 +14,12 @@ const books = [
   { id: 10, authorId: 2, title: "IT" },
   { id: 11, authorId: 2, title: "The Stand" },
   { id: 12, authorId: 2, title: "11/22/63" },
-];
+] as const;
 
 const resolvers = {
   Query: {
     books: () => books.map(({ authorId, ...rest }) => rest),
+
     book: (_, { id }) => {
       console.log("Book Id: ", id);
       console.log(
@@ -26,9 +27,11 @@ const resolvers = {
         books.find((book) => book.id === Number(id))
       );
 
+      // @ts-ignore // authorId might be accessed from undefined due to the find method, but at the moment we don't care about it
       const { authorId, ...rest } = books.find(
         (book) => book.id === Number(id)
       );
+
       return rest;
     },
     author: (_, { id }) => {

@@ -1,10 +1,10 @@
 function* generateNames() {
   while (true) {
-    yield 'John Doe';
-    yield 'John Snow';
-    yield 'Me';
-    yield 'You';
-    yield 'Too';
+    yield "John Doe";
+    yield "John Snow";
+    yield "Me";
+    yield "You";
+    yield "Too";
   }
 }
 function* generateIds() {
