@@ -2,97 +2,70 @@ sources:
   - name: Authors
     handler:
       graphql:
-        endpoint: http://localhost:4100
-  - name: Books
-    handler:
-      graphql:
-        endpoint: http://localhost:4200
+        endpoint: ./src/mock-schema/mock-schema.graphql
 
-#additionalTypeDefs: |
-#  extend type Book {
-#    author: Author
-#  }
-#  extend type Author {
-#    books: [Book]
-#  }
-#
-#additionalResolvers:
-#  - type: Book
-#    field: author
-#    requiredSelectionSet: "{ authorId }"
-#    targetSource: Authors
-#    targetMethod: author
-#    args:
-#      id: "{root.authorId}"
-#  - type: Author
-#    field: books
-#    requiredSelectionSet: "{ booksIds }"
-#    targetSource: Books
-#    targetMethod: books
-#    args:
-#      id: "{root.booksIds}"
+transforms:
+  - mock:
+      if: true
+      initializeStore: ./src/resolvers/authors.query.ts#initializeStore
+      mocks:
+        - apply: Query.author
+          custom: ./src/resolvers/authors.query.ts#author
 
-#transforms:
-#  - mock:
-#      if: false
-#      preserveResolvers: true
-#      mocks:
-#        - apply: Query.author
-#          store:
-#            type: Author
-#            key: "{ args.id }"
-#        - apply: Author.id
-#          custom: "./src/mocks/author#id"
-#        - apply: Author.name
-#          custom: "./src/mocks/author#name"
-#        - apply: Query.authors
-#          length: 5
-#        - apply: Mutation.updateAuthor
-#          custom: "./src/mocks/mutations#updateAuthor"
+require:
+  - ts-node/register/transpile-only
 
 serve:
+  port: 4000
   cors: { origin: http://localhost:3000 }
+  playground: true
   exampleQuery: |
-    query Books {
-      books {
-        id
-        title
-      }
-    }
-    query Book {
-      book(id: 1) {
-        id
-        title
-      }
-    }
+    # queries
     query Authors {
-      authors{
+      authors {
         id
         name
-      }
-    }
-    query Author{
-      author(id:1){
-        id
-        name
-        books{
+        type {
           id
-          title
+          name
+          version
         }
+        created_at
+        registration_number
       }
     }
-    mutation CreateAuthor($authorCreateInput: AuthorCreate!) {
-      createAuthor(authorCreateInput: $authorCreateInput){
+
+    query Author($id: ID!) {
+      author(id: $id) {
+        __typename
         id
         name
-        books {
+        type{
           id
+          name
+          version
         }
+        created_at
+        registration_number
       }
     }
-    mutation UpdateAuthor($id: ID!, $authorUpdateInput: AuthorUpdate!) {
-      updateAuthor(id: $id, authorUpdateInput: $authorUpdateInput){
-        id
-        name
+
+    query AuthorPerhaps($id: ID!) {
+      authorPerhaps(id: $id) {
+        __typename
+        ... on ExistingAuthor{
+          id
+          name
+          type{
+            id
+            name
+            version
+          }
+          created_at
+          registration_number
+        }
+        ... on AuthorDoesNotExistError{
+          message
+        }
       }
     }

@@ -1,47 +1,24 @@
 import React from "react";
 import { useQuery } from "./gqless";
+import { Books } from "./components/Books/Books";
+import { Authors } from "./components/Authors/Authors";
+import { BookDetail } from "./components/BookDetail/BookDetail";
 
 function App() {
-  const { $state, books, authors } = useQuery();
+  const { $state, books, book, authors } = useQuery();
 
+  const bookDetail = book({ id: "1" });
   return (
     <section>
-      <article>
-        <h1>Books</h1>
-        <ul>
-          {$state.isLoading ? (
-            <li>Loading ...</li>
-          ) : (
-            books.map((book) => (
-              <li key={book.id || 0}>
-                <b style={{ display: "inline-block" }}>{book.title}</b>
-              </li>
-            ))
-          )}
-        </ul>
-      </article>
-
-      <article>
-        <h1>Authors</h1>
-        <ul>
-          {$state.isLoading ? (
-            <li>Loading ...</li>
-          ) : (
-            authors.map((author) => (
-              <li key={author.id || 0}>
-                <b style={{ width: 180, display: "inline-block" }}>
-                  {author.name}
-                </b>
-                <ul>
-                  {author.books.map((book) => (
-                    <li key={book.id || 0}>{book.title}</li>
-                  ))}
-                </ul>
-              </li>
-            ))
-          )}
-        </ul>
-      </article>
+      {$state.isLoading ? (
+        <p>Loading ...</p>
+      ) : (
+        <>
+          <BookDetail book={bookDetail} />
+          <Books books={books} />
+          <Authors authors={authors} />
+        </>
+      )}
     </section>
   );
 }

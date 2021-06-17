@@ -32,6 +32,7 @@ export interface AuthorUpdate {
 export const scalarsEnumsHash: import("gqless").ScalarsEnumsHash = {
   ID: true,
   String: true,
+  Int: true,
   Boolean: true,
 };
 export const generatedSchema = {
@@ -58,6 +59,11 @@ export const generatedSchema = {
     __typename: { __type: "String!" },
     id: { __type: "ID!" },
     title: { __type: "String!" },
+    numberOfPages: { __type: "Int!" },
+    coverType: { __type: "String" },
+    releaseYear: { __type: "Int" },
+    itemsSold: { __type: "Int" },
+    size: { __type: "String!" },
   },
   Author: {
     __typename: { __type: "String!" },
@@ -94,6 +100,11 @@ export interface Book {
   __typename: "Book" | undefined;
   id: ScalarsEnums["ID"];
   title: ScalarsEnums["String"];
+  numberOfPages: ScalarsEnums["Int"];
+  coverType?: Maybe<ScalarsEnums["String"]>;
+  releaseYear?: Maybe<ScalarsEnums["Int"]>;
+  itemsSold?: Maybe<ScalarsEnums["Int"]>;
+  size: ScalarsEnums["String"];
 }
 
 export interface Author {

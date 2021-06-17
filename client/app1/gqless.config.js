@@ -1,16 +1,14 @@
+import { GraphQLDateTime } from "graphql-scalars";
 /**
  * @type {import("@gqless/cli").GqlessConfig}
  */
 const config = {
-  endpoint: 'http://localhost:4000/graphql',
-  enumsAsStrings: false,
+  enumsAsStrings: true,
   react: true,
-  scalars: { DateTime: 'string' },
-  preImport: '',
-  introspection: { endpoint: '../../gateway/schema.graphql', headers: {} },
-  destination: './src/gqless/index.ts',
+  scalarTypes: { DateTime: GraphQLDateTime },
+  introspection: { endpoint: "../../gateway/schema.graphql", headers: {} },
+  destination: "./src/gqless/index.ts",
   subscriptions: false,
 };
 
 module.exports = config;
-

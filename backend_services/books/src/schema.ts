@@ -9,11 +9,61 @@ const schemaDef = loadSchemaSync(join(__dirname, "../books.graphql"), {
 
 // Data store
 const books = [
-  { id: 1, authorId: 1, title: "The Conan Chronicles" },
-  { id: 2, authorId: 1, title: "The Wheel of Time" },
-  { id: 10, authorId: 2, title: "IT" },
-  { id: 11, authorId: 2, title: "The Stand" },
-  { id: 12, authorId: 2, title: "11/22/63" },
+  {
+    __typename: "Book",
+    id: 1,
+    authorId: 1,
+    title: "The Conan Chronicles",
+    numberOfPages: 500,
+    coverType: "Soft",
+    releaseYear: "2021-06-17T08:32:11.163Z",
+    itemsSold: 2039123,
+    size: "A5",
+  },
+  {
+    __typename: "Book",
+    id: 2,
+    authorId: 1,
+    title: "The Wheel of Time",
+    numberOfPages: 500,
+    coverType: "Soft",
+    releaseYear: "2021-06-17T08:32:11.163Z",
+    itemsSold: 2039123,
+    size: "A5",
+  },
+  {
+    __typename: "Book",
+    id: 10,
+    authorId: 2,
+    title: "IT",
+    numberOfPages: 500,
+    coverType: "Soft",
+    releaseYear: "2021-06-17T08:32:11.163Z",
+    itemsSold: 2039123,
+    size: "A5",
+  },
+  {
+    __typename: "Book",
+    id: 11,
+    authorId: 2,
+    title: "The Stand",
+    numberOfPages: 500,
+    coverType: "Soft",
+    releaseYear: "2021-06-17T08:32:11.163Z",
+    itemsSold: 2039123,
+    size: "A5",
+  },
+  {
+    __typename: "Book",
+    id: 12,
+    authorId: 2,
+    title: "11/22/63",
+    numberOfPages: 500,
+    coverType: "Soft",
+    releaseYear: "2021-06-17T08:32:11.163Z",
+    itemsSold: 2039123,
+    size: "A5",
+  },
 ] as const;
 
 const resolvers = {
@@ -22,15 +72,17 @@ const resolvers = {
 
     book: (_, { id }) => {
       console.log("Book Id: ", id);
-      console.log(
-        "Found book: ",
-        books.find((book) => book.id === Number(id))
-      );
+      const bookSearchResult = books.find((book) => book.id === Number(id));
 
-      // @ts-ignore // authorId might be accessed from undefined due to the find method, but at the moment we don't care about it
-      const { authorId, ...rest } = books.find(
-        (book) => book.id === Number(id)
-      );
+      console.log("Book search result: ", bookSearchResult);
+      if (!bookSearchResult) {
+        return {
+          __typename: "BookDoesNotExistError",
+          message: "Well fuck",
+        };
+      }
+
+      const { authorId, ...rest } = bookSearchResult;
 
       return rest;
     },
