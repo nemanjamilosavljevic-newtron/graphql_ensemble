@@ -17,8 +17,6 @@ Alternatively, you can check this [codesandbox](https://codesandbox.io/s/white-f
 
 ### Major:
 
-- The "custom" property not documented well enough: https://github.com/Urigo/graphql-mesh/issues/1909
-
 ### Minor:
 
 - Reload server after change: https://github.com/Urigo/graphql-mesh/issues/1906
